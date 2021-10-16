@@ -1,0 +1,11 @@
+def hash(arg):
+    hashed=""
+    for letter in arg:
+        hashed+=str(bin(ord(letter)*322%228))
+        hashed=hashed.replace("b",'')
+    return hashed
+
+def main():
+    string=input()
+    hashed = hash(string)
+    print(hashed)
