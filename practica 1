@@ -1,0 +1,39 @@
+import random
+from random import randint
+
+
+def generator(n):
+    lst = []
+    k = []
+    a = 0
+    p = 2
+    for a in range(0,n):
+        lst.append(a)
+    while p ** 2 <= len(lst):
+        if lst[p ** 2]:
+            for i in range(p ** 2, len(lst)):
+                if (i % p != 0):
+                    k.append(lst[i])
+        p+=1
+    return (k[len(k)-1])
+
+def main():
+    g = int(input('1st: '))
+    p = int(input('2nd: '))
+    a = randint(0,100000)
+    a = generator(a)
+    print('Alfa created number ',a)
+    A = (g**a)%p
+    print('Alfa sends A = ',A,', Eva and Bob gets it')
+    b = randint(0,100000)
+    b = generator(b)
+    print('Bob created number ',b)
+    B = (g**b)%p
+    print('Bob sends B = ',B,', Eva and Alfa gets it')
+    alfa = (B**a)%p
+    bob = (A**b)%p
+    print('Alfa gets: ',alfa,' and Bob gets: ',bob)
+
+main()
+
+	
