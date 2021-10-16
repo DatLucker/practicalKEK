@@ -1,0 +1,82 @@
+def Cesar(w,d,k,dic):
+    cesar_alphabet="абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+    for i in k:
+        cesar_alphabet=cesar_alphabet.replace(i,"")
+    a=cesar_alphabet[-d:]+cesar_alphabet[:-d]
+    cesar_alphabet=a[:d]+k+a[d:]
+    print("абвгдеёжзийклмнопрстуфхцчшщъыьэюя")
+    print(cesar_alphabet)
+    encripted=""
+    for i in w:
+        encripted+=cesar_alphabet[dic[i]]
+    return  encripted
+
+
+def Cesar_mod(w,k,dic):
+    cesar_mod_alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+    under_word,c="",0
+    for i in w:
+        under_word+=k[c%len(k)]
+        c+=1
+    encripted = ""
+    for i in range(len(w)):
+        encripted += cesar_mod_alphabet[(dic[w[i]]+"абвгдеёжзийклмнопрстуфхцчшщъыьэюя".find(under_word[i]))%33]
+    return encripted
+
+
+word=input()
+delta=int(input())
+key=input()
+alphabet="абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+word_dict={}
+key_dict={}
+
+for i in word:
+    if i in alphabet:
+        word_dict[i]=alphabet.find(i)
+for i in key:
+    if i in alphabet:
+        key_dict[i]=alphabet.find(i)
+print(word_dict)
+print(key_dict)
+print(Cesar(word,delta,key,word_dict))
+print(Cesar_mod(word,key,word_dict))
+encripted_dict={}
+for i in Cesar_mod(word,key,word_dict):
+    if i in alphabet:
+        encripted_dict[i]=alphabet.find(i)
+print(encripted_dict)
+
+
+def main():
+
+    alpha = 'abcdefghijklmnopqrstuvwxyz'
+    word = input("input word: ").strip().lower()
+    shift = int(input("input shift: "))
+    key = input("input key: ").lower()
+
+    newalpha = ""
+    newalpha += alpha
+
+    for letter in key:
+        newalpha=newalpha.replace(letter,"")
+    #a = alpha[-shift:]+alpha[:-shift]
+    newalpha = newalpha[:shift]+key+newalpha[shift:]
+    print(alpha)
+    print(newalpha)
+    res = ""
+    for i in word:
+        res += newalpha[alpha.find(i)]
+
+    print('Result: "' + res + '"')
+
+   # under_word,c="",0
+  #  for i in word:
+   #     under_word+=key[c%len(key)]
+   #     c+=1
+    #encripted = ""
+  #  for i in range(len(word)):
+  #      encripted += alpha[(dic[word[i]]+"abcdefghijklmnopqrstuvwxyz".find(under_word[i]))%len(alpha)]
+
+
+main();
