@@ -1,11 +1,26 @@
 def hash(arg):
-    hashed=""
+    hashed = ""
+    buff = ""
+    buff2 = ""
     for letter in arg:
-        hashed+=str(bin(ord(letter)*322%228))
-        hashed=hashed.replace("b",'')
+        buff += str(bin(ord(letter) * 32))
+        buff = buff.replace("0b", '')
+        buff = buff.replace("b", '')
+    kek = int(len(buff) / 2)
+    buff2 = buff[-kek:] + buff[:-kek]
+
+    k = str(bin(len(buff)))
+    k = k.replace("b", '')
+    buff = buff2[:kek] + k + buff2[kek:]
+    hashed = buff
+
     return hashed
 
+
 def main():
-    string=input()
+    string = input()
     hashed = hash(string)
     print(hashed)
+
+
+main()
