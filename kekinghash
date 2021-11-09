@@ -2,16 +2,27 @@ def hash(arg):
     hashed = ""
     buff = ""
     buff2 = ""
+    argforever = arg
+    arg += 'HighwayToHell666'+buff2
+
     for letter in arg:
-        buff += str(bin(ord(letter) * 32))
-        buff = buff.replace("0b", '')
-        buff = buff.replace("b", '')
+        buff += str((ord(letter) * 32))
+#        buff = buff.replace("0b", '')
+#        buff = buff.replace("b", '')
     kek = int(len(buff) / 2)
     buff2 = buff[-kek:] + buff[:-kek]
 
     k = str(bin(len(buff)))
     k = k.replace("b", '')
-    buff = buff2[:kek] + k + buff2[kek:]
+    buff = k + buff2[:kek] + k + buff2[kek:] + k
+#    buff = str(((int(buff)) / (len(buff))))
+#    for kwak in str((int(buff))/(len(buff))):
+#        buff=str(int(buff)/int(ord(kwak)))
+    if int(buff)%2 == 0:
+        buff = str(int(buff) >> ord(argforever[0]))
+    if int(buff)%2==1:
+        buff = str(int(buff) >> ord(argforever[0]))
+
     hashed = buff
 
     return hashed
