@@ -17,6 +17,12 @@ def generator(n):
         p+=1
     return (k[len(k)-1])
 
+def encrypt (message,key):
+    encrypted=""
+    for i in message:
+        encrypted+= chr(ord(i)+key)
+    return encrypted
+
 def main():
     g = int(input('1st: '))
     p = int(input('2nd: '))
@@ -33,7 +39,7 @@ def main():
     alfa = (B**a)%p
     bob = (A**b)%p
     print('Alfa gets: ',alfa,' and Bob gets: ',bob)
-
+    message = input('Inp message: ')
+    enc_message = encrypt(message,alfa)
+    print('Encrypted: ',enc_message)
 main()
-
-	
